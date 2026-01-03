@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import api from './utils/api';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
@@ -48,6 +50,20 @@ import ScrollToTop from './components/ScrollToTop';
 import PageWrapper from './components/PageWrapper';
 
 function App() {
+  // Pinger to wake up backend on initial load
+  useEffect(() => {
+    const pingBackend = async () => {
+      try {
+        await api.get('/');
+        console.log("Backend awake!");
+      } catch (error) {
+        // Silent fail - just a wake up call
+        console.log("Waking up backend...", error.message);
+      }
+    };
+    pingBackend();
+  }, []);
+
   return (
     <AuthProvider>
       <ToastProvider>
