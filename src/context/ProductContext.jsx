@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import api from '../utils/api';
 
 const ProductContext = createContext(null);
 
 export const ProductProvider = ({ children }) => {
     // Consolidated Product Data
+    const [loading, setLoading] = useState(false);
     const productsData = [
         // Electronics
         { id: 9, name: "Noise Cancelling Headphones", price: "₹19,999", category: "Electronics", img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80", description: "Immerse yourself in music with industry-leading noise cancellation.", specs: ["30h Battery", "Bluetooth 5.0", "Over-ear"] },
