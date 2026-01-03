@@ -54,7 +54,7 @@ function App() {
   useEffect(() => {
     const pingBackend = async () => {
       try {
-        await api.get('/');
+        await api.get('/products?limit=1');
         console.log("Backend awake!");
       } catch (error) {
         // Silent fail - just a wake up call
