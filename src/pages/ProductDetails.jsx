@@ -8,16 +8,22 @@ import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
+import Loader from '../components/Loader';
+
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { getProductById, addToRecentlyViewed } = useProduct();
+    const { getProductById, addToRecentlyViewed, loading } = useProduct();
     const { addToCart, cart, updateQuantity, removeFromCart } = useCart();
     const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
     const { isLoggedIn, openLoginModal } = useAuth();
     const { showToast } = useToast();
 
     const product = getProductById(id);
+
+    if (loading) {
+        return <Loader />;
+    }
 
     // Track Recently Viewed
     React.useEffect(() => {

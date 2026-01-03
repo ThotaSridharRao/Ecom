@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import Loader from './Loader';
 
 const ProtectedAdminRoute = ({ children }) => {
-    const { isLoggedIn, user, openLoginModal } = useAuth();
+    const { isLoggedIn, user, openLoginModal, loading } = useAuth();
     const navigate = useNavigate();
+
+    if (loading) {
+        return <Loader />;
+    }
 
     useEffect(() => {
         if (!isLoggedIn) {
