@@ -134,7 +134,7 @@ const Navigation = () => {
         setShowSuggestions(true);
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         setLoginError('');
 
@@ -147,7 +147,7 @@ const Navigation = () => {
                 setLoginError('Passwords do not match');
                 return;
             }
-            const result = register({ name, email, password });
+            const result = await register({ name, email, password });
             if (result.success) {
                 // Success handled by context (auto login)
                 closeLoginModal();
@@ -160,7 +160,7 @@ const Navigation = () => {
                 setLoginError('All fields are required');
                 return;
             }
-            const result = login(email, password);
+            const result = await login(email, password);
             if (result.success) {
                 closeLoginModal();
                 // Admin Redirect
