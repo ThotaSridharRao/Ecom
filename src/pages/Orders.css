@@ -1,0 +1,204 @@
+/* Orders Page Styles - Mobile First & Friendly */
+
+.order-minimal-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.order-minimal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border-color: #e0e0e0;
+}
+
+.order-status-header {
+    padding: 1rem;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-indicator.success {
+    background-color: #198754;
+}
+
+.status-indicator.primary {
+    background-color: #0d6efd;
+}
+
+.status-indicator.warning {
+    background-color: #ffc107;
+}
+
+.status-indicator.danger {
+    background-color: #dc3545;
+}
+
+.product-preview {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.product-thumb-large {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #f0f0f0;
+}
+
+.action-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Vertical Timeline for Tracking Modal */
+.timeline-container {
+    padding: 1rem 0;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 11px;
+    /* Center of the dot (24px width / 2 - 1px width) */
+    top: 24px;
+    bottom: 0;
+    width: 2px;
+    background-color: #e9ecef;
+}
+
+.timeline-item:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.timeline-item.completed .timeline-icon {
+    background-color: #198754;
+}
+
+.timeline-item.completed .timeline-line {
+    background-color: #198754;
+}
+
+.timeline-item.current .timeline-icon {
+    background-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+.timeline-content {
+    padding-top: 2px;
+}
+
+.timeline-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-date {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* Help Modal Button Styles */
+.help-option-btn {
+    transition: all 0.2s ease;
+    border-color: #dee2e6;
+}
+
+.help-option-btn:hover {
+    background-color: #f8f9fa !important;
+    border-color: #cff4fc;
+    transform: translateY(-1px);
+    color: #212529 !important;
+    /* Force text to be dark on light background */
+}
+
+/* Ensure inner text elements stay dark on hover for help buttons */
+.help-option-btn:hover .text-muted {
+    color: #6c757d !important;
+}
+
+.help-option-btn:hover .text-primary {
+    color: #0d6efd !important;
+}
+
+.help-option-btn:hover .text-dark {
+    color: #212529 !important;
+}
+
+/* Specific fix for hover states on OTHER outline buttons (like Track Order) */
+.btn-outline-primary:not(.help-option-btn):hover,
+.btn-outline-dark:not(.help-option-btn):hover {
+    color: #fff !important;
+}
+
+.btn-outline-primary:not(.help-option-btn):hover .text-muted,
+.btn-outline-dark:not(.help-option-btn):hover .text-muted,
+.btn-outline-primary:not(.help-option-btn):hover .text-primary,
+.btn-outline-dark:not(.help-option-btn):hover .text-dark {
+    color: #fff !important;
+}
+
+.btn-outline-primary:not(.help-option-btn):hover .bg-primary,
+.btn-outline-dark:not(.help-option-btn):hover .bg-dark {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 576px) {
+    .product-preview {
+        padding: 0.75rem;
+    }
+
+    .product-thumb-large {
+        width: 60px;
+        height: 60px;
+    }
+
+    .order-status-header {
+        padding: 0.75rem;
+    }
+}

@@ -1,0 +1,117 @@
+/* Addresses Page Styles */
+
+.address-list-item {
+    background: #fff;
+    border: 1px solid #f1f3f5;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.address-list-item:hover {
+    border-color: #dee2e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transform: translateY(-1px);
+}
+
+.address-list-item.default-address {
+    background-color: #f8faff;
+    border-color: #cff4fc;
+}
+
+.address-list-item.default-address::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #0d6efd;
+}
+
+.address-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.default-address .address-icon-wrapper {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}
+
+.action-btn-group {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.address-list-item:hover .action-btn-group {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .action-btn-group {
+        opacity: 1;
+    }
+}
+
+.custom-radio .form-check-input:checked {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.address-details {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #6c757d;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background-color: #f1f3f5;
+    color: #212529;
+}
+
+.btn-icon.delete:hover {
+    background-color: #fff5f5;
+    color: #dc3545;
+}
+
+/* Modal Styles */
+.address-modal .modal-content {
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+}
+
+.address-modal .modal-header {
+    background: #fff;
+    border-bottom: 1px solid #f1f3f5;
+    padding: 1rem 1.5rem;
+}
+
+/* Map Container Override */
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    z-index: 1;
+}

@@ -1,0 +1,205 @@
+/* Navigation.css */
+
+.search-container {
+    width: 100%;
+    z-index: 10;
+}
+
+/* Desktop: Absolute Center */
+@media (min-width: 992px) {
+    .search-container {
+        max-width: 420px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile: Padded & Static */
+@media (max-width: 991px) {
+    .search-container {
+        position: relative;
+        max-width: 100%;
+        padding: 0 0rem;
+        /* Reduced spacing from sides */
+        transform: none;
+        left: auto;
+    }
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    padding: 0 0.25rem 0 1rem;
+    /* Minimal padding */
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    height: 38px;
+    /* Slimmer height */
+}
+
+.search-input-group:focus-within {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    box-shadow: none !important;
+    padding-left: 0;
+    font-size: 16px;
+    /* Increased to 16px to prevent iOS zoom */
+    color: #212529;
+    height: 100%;
+}
+
+.search-input:focus {
+    background: transparent;
+}
+
+.search-input::placeholder {
+    color: #6c757d;
+    opacity: 0.8;
+}
+
+.search-icon-btn {
+    color: #5f6368;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    /* Smaller icons */
+}
+
+.search-icon-btn:hover {
+    color: #202124;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-submit-btn {
+    position: relative;
+    background-color: transparent;
+    color: #0d6efd;
+    border-radius: 50%;
+    width: 32px;
+    /* Smaller button */
+    height: 32px;
+    /* Smaller button */
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.25rem;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+}
+
+/* The small separator line */
+.search-submit-btn::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    /* Smaller separator */
+    width: 1px;
+    background-color: #dee2e6;
+}
+
+.search-submit-btn:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0b5ed7;
+    transform: scale(1.05);
+}
+
+/* Rich Search Dropdown */
+.rich-dropdown {
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    z-index: 1050;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.suggestion-item {
+    border: none;
+    border-bottom: 1px solid #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    padding: 0.75rem 1rem !important;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f8f9fa;
+}
+
+.suggestion-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+/* Profile Dropdown Customization */
+.profile-dropdown .dropdown-toggle::after {
+    display: none;
+}
+
+.profile-dropdown .dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.profile-dropdown .dropdown-item {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.profile-dropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+}
+
+/* Mobile Backdrop */
+.navbar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1039;
+    backdrop-filter: blur(2px);
+}
+
+/* Utilities */
+.focus-ring-none:focus {
+    box-shadow: none !important;
+}
+
+.pointer {
+    cursor: pointer;
+}

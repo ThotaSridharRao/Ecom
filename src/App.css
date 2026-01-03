@@ -1,0 +1,151 @@
+/* App specific styles */
+.pointer {
+  cursor: pointer;
+}
+
+/* Page Transition Animation */
+.page-transition-wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Smooth ease-out */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom Toast Styles */
+.custom-toast {
+  background: rgba(33, 37, 41, 0.95) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 50px !important;
+  /* Pill shape */
+  overflow: hidden;
+  color: #fff !important;
+  font-weight: 500;
+  min-width: 300px !important;
+  touch-action: none;
+  user-select: none;
+}
+
+.custom-toast.toast-success {
+  border-left: none !important;
+  /* Remove side borders for pill style */
+}
+
+.custom-toast.toast-info {
+  border-left: none !important;
+}
+
+.custom-toast.toast-error {
+  border-left: none !important;
+}
+
+.custom-toast .toast-body {
+  padding: 12px 24px !important;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+/* Close button override for dark theme */
+.custom-toast .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Admin Layout System (Fixed Sidebar + Margin Content)
+   ========================================================================== */
+
+/* 1. Sidebar: Always Fixed */
+.admin-sidebar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px !important;
+  height: 100vh;
+  background-color: #343a40;
+  color: #fff;
+  z-index: 1050;
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  /* Desktop Default: Visible (No transform) */
+  transform: translateX(0);
+}
+
+/* 2. Content Wrapper: Pushed by Sidebar on Desktop */
+.admin-content-wrapper {
+  margin-left: 250px;
+  width: auto;
+  transition: margin-left 0.3s ease-in-out;
+  background-color: #f8f9fa;
+}
+
+/* 3. Link Styling (Reset) */
+.admin-sidebar a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 4. Overlay (Mobile Only) */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1045;
+  /* Below sidebar, above content */
+  display: none;
+  /* Hidden by default */
+}
+
+/* ==========================================================================
+   Responsive Logic (Mobile < 992px)
+   ========================================================================== */
+@media (max-width: 991.98px) {
+
+  /* Hide Sidebar by default on mobile via Transform */
+  .admin-sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  /* Show Sidebar when active */
+  .admin-sidebar.show {
+    transform: translateX(0);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Content takes full width on mobile */
+  .admin-content-wrapper {
+    margin-left: 0 !important;
+  }
+
+  /* Show Overlay when sidebar is open */
+  .sidebar-overlay.show {
+    display: block;
+  }
+}

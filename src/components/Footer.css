@@ -1,0 +1,103 @@
+.footer {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s;
+    opacity: 0.8;
+}
+
+.footer ul li a:hover {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.footer-social-icon {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-right: 1rem;
+    transition: color 0.2s;
+    opacity: 0.8;
+}
+
+.footer-social-icon:hover {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.footer-bottom {
+    border-top: 1px solid #495057;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    color: #e9ecef;
+}
+
+/* Mobile Footer Optimizations */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0 1rem;
+        /* Less padding */
+        margin-top: 2rem;
+        text-align: left;
+    }
+
+    .footer h5 {
+        font-size: 1rem;
+        /* Smaller headings */
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer p.small {
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    .footer ul li {
+        margin-bottom: 0.35rem;
+    }
+
+    .footer ul li a {
+        font-size: 0.85rem;
+        /* Smaller link text */
+    }
+
+    .footer-social-icon {
+        font-size: 1.25rem;
+        /* Smaller icons */
+        margin-right: 0.75rem;
+    }
+
+    .footer-bottom {
+        padding-top: 1rem;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+    }
+
+    /* Ensure social icons don't wrap weirdly */
+    .d-flex {
+        flex-wrap: wrap;
+    }
+}

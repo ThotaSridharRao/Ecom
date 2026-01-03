@@ -1,0 +1,76 @@
+/* AdminSidebar.css */
+.admin-sidebar {
+    background-color: #343a40;
+    color: #fff;
+    min-height: 100vh;
+    width: 250px;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.admin-sidebar .sidebar-brand {
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.admin-sidebar a {
+    color: #adb5bd;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar .nav-link-icon {
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+}
+
+.admin-sidebar .submenu {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-left: 1rem;
+}
+
+.admin-sidebar .submenu a {
+    padding-left: 2.5rem;
+    font-size: 0.9rem;
+}
+
+.admin-toggle-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        margin-left: -250px;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100vh;
+        z-index: 1040;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-sidebar.show {
+        margin-left: 0;
+    }
+}

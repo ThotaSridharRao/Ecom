@@ -1,0 +1,189 @@
+.carousel-wrapper {
+    position: relative;
+    padding: 0 10px;
+}
+
+/* Default: Horizontal Scroll (Desktop > 1024px) */
+.product-scroll-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 1rem;
+}
+
+/* Add shadow back for desktop since we removed shadow-sm class */
+.product-card {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    /* For absolute positioning of tags */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.product-card-wrapper {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+/* Navigation Buttons (Desktop > 1024px) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dee2e6;
+    opacity: 0.9;
+    transition: all 0.2s;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.carousel-btn:hover {
+    opacity: 1;
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.btn-left {
+    left: 0;
+}
+
+.btn-right {
+    right: 0;
+}
+
+/* Hide mobile elements on desktop/tablet by default */
+.mobile-discount-tag {
+    display: none;
+}
+
+/* Tablet View (768px - 1024px): Horizontal Scroll, No Buttons, No Hover */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .product-scroll-container {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+    }
+
+    .carousel-btn {
+        display: none !important;
+    }
+
+    /* Disable hover effects AND shadows on touch devices */
+    .product-card,
+    .product-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        /* Completely flat */
+        transition: none !important;
+    }
+}
+
+/* Mobile View (max-width: 767px): Horizontal Scroll (Blinkit Style) */
+@media (max-width: 767px) {
+    .carousel-wrapper {
+        padding: 0;
+    }
+
+    .product-scroll-container {
+        display: flex;
+        flex-wrap: nowrap !important;
+        /* Force single row for horizontal scroll */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        /* Slightly larger gap */
+        padding-left: 10px;
+        /* Start padding */
+        padding-right: 10px;
+        /* End padding */
+    }
+
+    .product-card-wrapper {
+        flex: 0 0 auto !important;
+        width: 40vw !important;
+        /* Ensure 2 full cards + peek at 3rd */
+        max-width: 150px !important;
+        /* Cap width so they don't get too huge */
+        min-width: 130px !important;
+        /* Ensure they don't get too small */
+        margin-bottom: 0;
+    }
+
+    .carousel-btn {
+        display: none !important;
+    }
+
+    /* Disable hover effects AND default shadows on mobile */
+    .product-card,
+    .product-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        /* Completely flat */
+        border: 1px solid #f0f0f0 !important;
+        /* Subtle border */
+        transition: none !important;
+    }
+
+    /* Blinkit-style Mobile Elements */
+    .mobile-discount-tag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #007bff;
+        /* Blue ribbon */
+        color: white;
+        font-size: 0.6rem;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-bottom-right-radius: 8px;
+        z-index: 2;
+        display: block !important;
+        /* Show on mobile */
+    }
+
+    /* Adjust card body padding for dense look */
+    .product-card .card-body {
+        padding: 0.5rem !important;
+    }
+
+    .product-card .card-title {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.wishlist-icon:hover {
+    transform: scale(1.1);
+}

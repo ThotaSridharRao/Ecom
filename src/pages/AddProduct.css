@@ -1,0 +1,146 @@
+.add-product-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.add-product-container .form-card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.add-product-container .card-header-custom {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 2rem;
+}
+
+.add-product-container .form-section-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8898aa;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.add-product-container .form-label {
+    font-weight: 600;
+    color: #525f7f;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.add-product-container .form-control,
+.add-product-container .form-select {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    border-color: #e9ecef;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.add-product-container .form-control:focus,
+.add-product-container .form-select:focus {
+    border-color: #5e72e4;
+    box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.1);
+}
+
+.add-product-container .input-group-text {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+}
+
+.image-upload-area {
+    border: 2px dashed #e9ecef;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #fdfdfd;
+    position: relative;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-upload-area:hover {
+    border-color: #5e72e4;
+    background-color: #f8f9fe;
+}
+
+.image-upload-area.has-image {
+    padding: 0;
+    border: none;
+}
+
+.image-upload-icon {
+    font-size: 3rem;
+    color: #adb5bd;
+    margin-bottom: 1rem;
+}
+
+.image-upload-text {
+    color: #8898aa;
+    font-weight: 500;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc3545;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.remove-image-btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Custom styles for the 'Add Option' buttons */
+.btn-add-option {
+    border-color: #e9ecef;
+    color: #5e72e4;
+    background: #fff;
+    z-index: 0;
+}
+
+.btn-add-option:hover {
+    background-color: #5e72e4;
+    color: #fff;
+    border-color: #5e72e4;
+}
