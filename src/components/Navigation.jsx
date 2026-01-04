@@ -23,7 +23,8 @@ const Navigation = () => {
     } = useAuth();
 
     const { getCartCount } = useCart();
-    const { defaultAddress } = useAddress();
+    const { addresses } = useAddress();
+    const defaultAddress = addresses.find(addr => addr.isDefault) || addresses[0];
     const { products } = useProduct();
     const { showToast } = useToast();
     const navigate = useNavigate();
@@ -32,11 +33,7 @@ const Navigation = () => {
 
     // Auth State
     const [isRegistering, setIsRegistering] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
+    // ... (rest of state items are fine, we skip to location state initialization)
 
     // Search State
     const [searchQuery, setSearchQuery] = useState('');
@@ -44,12 +41,16 @@ const Navigation = () => {
 
     // Location State
     const [showLocation, setShowLocation] = useState(false);
-    const [location, setLocation] = useState(defaultAddress ? `${defaultAddress.line1}, ${defaultAddress.city}` : 'Select your address');
+    const [location, setLocation] = useState('Select your address');
     const [locationError, setLocationError] = useState('');
 
     useEffect(() => {
         if (defaultAddress) {
-            setLocation(`${defaultAddress.city} ${defaultAddress.zip}`);
+            // User requested: District (City) - Pincode
+            const locString = `${defaultAddress.city} - ${defaultAddress.pincode}`;
+            setLocation(locString);
+        } else {
+            setLocation('Select your address');
         }
     }, [defaultAddress]);
 
