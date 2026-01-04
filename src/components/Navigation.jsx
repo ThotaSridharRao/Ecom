@@ -33,7 +33,11 @@ const Navigation = () => {
 
     // Auth State
     const [isRegistering, setIsRegistering] = useState(false);
-    // ... (rest of state items are fine, we skip to location state initialization)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     // Search State
     const [searchQuery, setSearchQuery] = useState('');
