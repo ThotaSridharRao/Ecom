@@ -7,10 +7,11 @@ import { useProduct } from '../context/ProductContext';
 import './Home.css';
 
 const Home = () => {
-    const { getProductsByCategory, getProductsByIds, recentlyViewedIds, getSuggestedProducts } = useProduct();
+    const { products, getProductsByCategory, getProductsByIds, recentlyViewedIds, getSuggestedProducts } = useProduct();
 
     // Data for different sections derived from context
-    const exclusiveOffers = getProductsByIds([1, 2, 3, 4, 25, 26, 27, 28]);
+    // Dynamically select products for Exclusive Offers (e.g., first 8 products)
+    const exclusiveOffers = products.slice(0, 8);
 
     // Use real history if available, else fallback or empty
     const recentlyViewed = recentlyViewedIds.length > 0
