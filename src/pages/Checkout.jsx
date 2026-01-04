@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Form, Badge, Modal } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useAddress } from '../context/AddressContext';
 import { useProduct } from '../context/ProductContext';

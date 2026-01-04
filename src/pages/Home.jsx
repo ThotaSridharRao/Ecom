@@ -29,26 +29,28 @@ const Home = () => {
         <>
             <div className="home-page">
                 {/* Hero Section */}
-                <Carousel className="mb-4 hero-carousel">
-                    <Carousel.Item className="hero-item">
-                        <div className="d-flex align-items-center justify-content-center h-100">
-                            <h3>Big Sale Coming Soon!</h3>
-                        </div>
-                        <Carousel.Caption>
-                            <h3>First Slide Label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item className="hero-item">
-                        <div className="d-flex align-items-center justify-content-center h-100">
-                            <h3>New Arrivals</h3>
-                        </div>
-                        <Carousel.Caption>
-                            <h3>Second Slide Label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
+                <Container className="my-4 section-container">
+                    <Carousel className="hero-carousel rounded-3 overflow-hidden shadow-sm">
+                        <Carousel.Item className="hero-item">
+                            <div className="d-flex align-items-center justify-content-center h-100 bg-secondary bg-opacity-10">
+                                <h3>Big Sale Coming Soon!</h3>
+                            </div>
+                            <Carousel.Caption>
+                                <h3>First Slide Label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item className="hero-item">
+                            <div className="d-flex align-items-center justify-content-center h-100 bg-primary bg-opacity-10">
+                                <h3>New Arrivals</h3>
+                            </div>
+                            <Carousel.Caption>
+                                <h3>Second Slide Label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </Container>
 
                 {/* Categories Bar */}
                 <Container className="my-5 section-container">
