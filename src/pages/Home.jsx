@@ -29,7 +29,7 @@ const Home = () => {
         <>
             <div className="home-page">
                 {/* Hero Section */}
-                <Container className="my-4 section-container">
+                <Container className="my-4">
                     <Carousel className="hero-carousel rounded-3 overflow-hidden shadow-sm">
                         <Carousel.Item className="hero-item">
                             <div className="d-flex align-items-center justify-content-center h-100 bg-secondary bg-opacity-10">
