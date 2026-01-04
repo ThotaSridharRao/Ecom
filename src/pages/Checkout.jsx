@@ -40,7 +40,7 @@ const Checkout = () => {
         // Select the newly added address (logic could be improved to select the last added)
     };
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = async () => {
         if (!selectedAddressId) {
             showToast('Please select a delivery address', 'error');
             return;
@@ -48,74 +48,43 @@ const Checkout = () => {
 
         setIsProcessing(true);
 
-        // Simulate API Call
-        setTimeout(() => {
+        try {
             const selectedAddress = addresses.find(a => a.id === selectedAddressId);
             const totalAmount = getCartTotal();
-            const orderId = `ORD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-            const newOrder = {
-                id: orderId,
-                date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-                time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
-                total: `₹${totalAmount.toLocaleString()}`,
-                status: 'Processing',
-                statusColor: 'warning',
-                expectedDelivery: `Arriving by ${new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,
-                deliveredDate: null,
-                currentStep: 1,
-                payment: {
-                    method: paymentMethod,
-                    details: paymentMethod === 'UPI' ? 'PhonePe' : paymentMethod === 'Card' ? '**** 1234' : '',
-                    isOnline: paymentMethod !== 'COD',
-                    status: paymentMethod === 'COD' ? 'Pending' : 'Success',
-                    transactionId: paymentMethod !== 'COD' ? `TXN${Date.now()}` : null,
-                    date: new Date().toLocaleString()
-                },
+            const orderPayload = {
+                items: cart,
                 address: {
                     name: selectedAddress.name,
                     line1: selectedAddress.address,
                     line2: `${selectedAddress.city}, ${selectedAddress.state} - ${selectedAddress.pincode}`,
-                    phone: selectedAddress.phone
+                    phone: selectedAddress.phone,
+                    city: selectedAddress.city,
+                    state: selectedAddress.state,
+                    zip: selectedAddress.pincode
                 },
-                vendor: {
-                    name: 'EcomStore Retailers',
-                    gst: '27AAAAA0000A1Z5',
-                    address: 'Mumbai, India'
+                payment: {
+                    method: paymentMethod,
+                    isOnline: paymentMethod !== 'COD'
                 },
                 bill: {
-                    subtotal: `₹${totalAmount.toLocaleString()}`,
-                    tax: '₹0', // Simplified
-                    shipping: 'Free',
-                    discount: '₹0',
-                    total: `₹${totalAmount.toLocaleString()}`
-                },
-                items: cart.map(item => ({
-                    name: item.name,
-                    image: item.img || item.image,
-                    qty: item.qty,
-                    price: item.price,
-                    id: item.id // Ensure ID is passed for tracking if needed later
-                })),
-                timeline: [
-                    { title: 'Order Placed', date: 'Just Now', completed: true },
-                    { title: 'Processing', date: 'In Progress', completed: true },
-                    { title: 'Shipped', date: 'Pending', completed: false },
-                    { title: 'Delivered', date: 'Pending', completed: false }
-                ]
+                    total: totalAmount
+                }
             };
 
-            // Update Stock for each item
-            cart.forEach(item => {
-                updateProductStock(item.id, item.qty);
-            });
+            const result = await addOrder(orderPayload);
 
-            addOrder(newOrder);
-            clearCart();
+            if (result && result.success) {
+                // Success is handled in context (toast + cart clear), but we navigate here
+                navigate('/orders');
+            } else {
+                // Error handled in context or here if needed
+                setIsProcessing(false);
+            }
+        } catch (error) {
+            console.error("Checkout process failed:", error);
             setIsProcessing(false);
-            showToast('Order placed successfully!', 'success');
-            navigate('/orders');
-        }, 2000);
+        }
     };
 
     if (cart.length === 0) {

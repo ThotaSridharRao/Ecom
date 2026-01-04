@@ -274,9 +274,52 @@ const Navigation = () => {
         </Form>
     );
 
+    // Smart Navbar Logic
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const controlNavbar = () => {
+            if (typeof window !== 'undefined') {
+                const currentScrollY = window.scrollY;
+
+                if (currentScrollY > 100) { // Threshold to start hiding
+                    if (currentScrollY > lastScrollY) {
+                        // Scrolling down
+                        setIsVisible(false);
+                    } else {
+                        // Scrolling up
+                        setIsVisible(true);
+                    }
+                } else {
+                    // Always show at top
+                    setIsVisible(true);
+                }
+
+                setLastScrollY(currentScrollY);
+            }
+        };
+
+        window.addEventListener('scroll', controlNavbar);
+
+        return () => {
+            window.removeEventListener('scroll', controlNavbar);
+        };
+    }, [lastScrollY]);
+
     return (
         <>
-            <Navbar bg="light" expand="lg" className="py-2 shadow-sm sticky-top" expanded={expanded} style={{ zIndex: expanded ? 1040 : 1020 }}>
+            <Navbar
+                bg="light"
+                expand="lg"
+                className="py-2 shadow-sm sticky-top"
+                expanded={expanded}
+                style={{
+                    zIndex: expanded ? 1040 : 1020,
+                    transition: 'transform 0.3s ease-in-out',
+                    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
+                }}
+            >
                 <Container fluid>
                     {/* Top Row for Mobile: Brand + Toggle/Login */}
                     <div className="d-flex align-items-center justify-content-between w-100 d-lg-none">
@@ -645,15 +688,28 @@ const Navigation = () => {
                         className="w-100 mb-3"
                         onClick={() => {
                             if (navigator.geolocation) {
+                                setLocationError('');
                                 navigator.geolocation.getCurrentPosition(
-                                    (position) => {
-                                        // Mock reverse geocoding
-                                        const mockLocation = "Indira Nagar, Bengaluru - 560038";
-                                        setLocation(mockLocation);
-                                        setShowLocation(false);
+                                    async (position) => {
+                                        try {
+                                            const { latitude, longitude } = position.coords;
+                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+                                            const data = await response.json();
+                                            if (data && data.address) {
+                                                const { city, town, village, state, postcode } = data.address;
+                                                const cityVal = city || town || village || state;
+                                                const locString = `${cityVal} - ${postcode}`;
+                                                setLocation(locString);
+                                                setShowLocation(false);
+                                            } else {
+                                                setLocationError("Address not found for this location.");
+                                            }
+                                        } catch (error) {
+                                            setLocationError("Failed to fetch address details.");
+                                        }
                                     },
                                     (error) => {
-                                        setLocationError("Unable to retrieve your location. Please select manually.");
+                                        setLocationError("Unable to retrieve your location. Please check browser permissions.");
                                     }
                                 );
                             } else {
@@ -682,9 +738,25 @@ const Navigation = () => {
                     )}
 
                     <LocationPicker
-                        onLocationSelect={(addr) => {
-                            setLocation(`${addr.city} ${addr.zip}`);
-                            setShowLocation(false);
+                        onLocationSelect={(coords) => {
+                            // Reuse the same logic for map clicks
+                            const fetchAddress = async () => {
+                                try {
+                                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coords.lat}&lon=${coords.lng}`);
+                                    const data = await response.json();
+                                    if (data && data.address) {
+                                        const { city, town, village, state, postcode, road, suburb } = data.address;
+                                        // create a readable string
+                                        const cityVal = city || town || village || state;
+                                        const locString = `${cityVal} - ${postcode}`;
+                                        setLocation(locString);
+                                        setShowLocation(false);
+                                    }
+                                } catch (error) {
+                                    console.error("Geocoding error", error);
+                                }
+                            };
+                            fetchAddress();
                         }}
                     />
                 </Modal.Body>
